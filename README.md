@@ -1,4 +1,4 @@
-# APB Protocol Implementation and System Integration
+# APB Protocol Implementation.
 
 This project involves the design and implementation of an Advanced Peripheral Bus (APB) protocol using Verilog, System Verilog, and Questa Sim. The APB protocol is a part of the Advanced Microcontroller Bus Architecture (AMBA) used for connecting low-bandwidth peripherals to the system bus.
 
