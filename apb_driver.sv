@@ -2,14 +2,13 @@
 
 class drv;
 base pkt;
-mailbox tx2drv,gen2drv,drv2sb;
+mailbox tx2drv,drv2sb;
 virtual apb_if intf;
 
 
-function new(base pkt,mailbox tx2drv,gen2drv,drv2sb,virtual apb_if intf);
+function new(base pkt,mailbox tx2drv,drv2sb,virtual apb_if intf);
 this.pkt=pkt;
 this.tx2drv=tx2drv;
-this.gen2drv=gen2drv;
 this.drv2sb=drv2sb;
 this.intf=intf;
 endfunction
@@ -51,7 +50,7 @@ begin
 
 	$display("wr in access =%0b",intf.pwrite);
 
-	gen2drv.get(pkt);
+	tx2drv.try_get(pkt);
 	@(negedge intf.pclk);
 	intf.pwrite=pkt.write;
 	drv2sb.try_put(pkt);
