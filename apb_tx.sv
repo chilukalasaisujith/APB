@@ -3,11 +3,9 @@
 class tx;
 base pkt;
 mailbox tx2drv;
-mailbox gen2drv;
-function new(base pkt, mailbox tx2drv,gen2drv);
+function new(base pkt, mailbox tx2drv);
  	this.pkt=pkt;
 	this.tx2drv=tx2drv;
-	this.gen2drv=gen2drv;
 endfunction
 
 task tx_run();
@@ -25,7 +23,7 @@ task tx_run();
 	#10
 	pkt.write=1'b0;
 	$display("%0t tx pkt.write=%d",$time,pkt.write);
-	gen2drv.try_put(pkt);
+	tx2drv.try_put(pkt);
 	$display("%0t txput2 addr=%d",$time,pkt.addr);
 	
 end
