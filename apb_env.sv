@@ -7,7 +7,7 @@
 `include "apb_configuration.sv"
 class env;
 base pkt1,pkt2;
-mailbox tx2drv,gen2drv,drv2sb,mon2sb;
+mailbox tx2drv,drv2sb,mon2sb;
 tx tx;
 drv drv;
 monitor mon;
@@ -20,13 +20,12 @@ function new(configuration cfg,virtual apb_if intf);
 pkt1=new();
 pkt2=new();
 tx2drv=new();
-gen2drv=new();
 drv2sb=new();
 mon2sb=new();
 this.intf=intf;
 this.cfg = cfg;
-tx=new(pkt1,tx2drv,gen2drv);
-drv=new(pkt1,tx2drv,gen2drv,drv2sb,intf);
+tx=new(pkt1,tx2drv);
+drv=new(pkt1,tx2drv,drv2sb,intf);
 mon=new(pkt2,mon2sb,intf);
 sb=new(pkt1,pkt2,drv2sb,mon2sb);
 
